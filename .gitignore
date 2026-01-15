@@ -1,0 +1,54 @@
+# Environment variables - CRÍTICO: NUNCA COMMITAR
+**/.env
+**/.env.local
+**/.env.production
+**/.env.development
+**/env
+**/.env*
+
+# API Keys e Credenciais
+**/credentials.json
+**/secrets.json
+**/*secret*
+**/*credentials*
+
+# Node modules
+**/node_modules/
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+
+# Build outputs
+**/dist/
+**/build/
+**/.next/
+**/out/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+**/logs/
+**/*.log
+
+# Database
+**/*.db
+**/*.sqlite
+
+# Testing
+**/coverage/
+**/.nyc_output/
+# Problematic files
+nul
+
+# Arquivos com chaves API (manter apenas localmente)
+ecosystem.config.js
+SETUP_COMPLETE.ps1
+TEST_GPT41_MINI.md

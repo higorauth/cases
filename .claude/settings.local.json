@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill //F //PID 4140)",
+      "Bash(taskkill //F //PID 13804)",
+      "Bash(timeout 5 curl:*)",
+      "Bash(dir:*)",
+      "Bash(del \"c:\\\\Users\\\\silva\\\\OneDrive\\\\Desktop\\\\Documentos\\\\JOSIAS\\\\index.html\")",
+      "Bash(taskkill:*)",
+      "Bash(move:*)",
+      "Bash(cmd /c \"cd c:\\\\Users\\\\silva\\\\OneDrive\\\\Desktop\\\\Documentos\\\\JOSIAS\\\\frontend\\\\public && ren logo.png.png logo.png\")",
+      "Bash(mv:*)",
+      "Bash(tasklist:*)"
+    ]
+  }
+}
