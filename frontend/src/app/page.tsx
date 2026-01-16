@@ -329,15 +329,9 @@ export default function Home() {
 
   return (
     <ThemeProvider>
-      <div className="relative min-h-screen overflow-hidden pb-12">
-        <div className="pointer-events-none absolute inset-0 opacity-70">
-          <div className="absolute -left-20 top-10 h-72 w-72 rounded-full bg-[rgba(16,111,99,0.25)] blur-3xl" />
-          <div className="absolute right-0 top-20 h-64 w-64 rounded-full bg-[rgba(255,200,130,0.18)] blur-3xl" />
-          <div className="absolute bottom-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-[rgba(0,0,0,0.05)] blur-3xl" />
-        </div>
-
-        <div className="relative z-10 mx-auto flex max-w-[1600px] flex-col gap-6 px-4 pt-10 lg:flex-row lg:px-10">
-          <div className="lg:sticky lg:top-10 lg:h-[calc(100vh-5rem)] lg:w-72">
+      <div className="min-h-screen bg-background pb-10">
+        <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-6 px-4 py-6 lg:flex-row lg:px-8">
+          <div className="w-full lg:sticky lg:top-6 lg:h-[calc(100vh-3rem)] lg:w-72">
             <Sidebar
               conversations={conversations}
               activeConversation={activeConversation}
@@ -349,66 +343,69 @@ export default function Home() {
             />
           </div>
 
-          <div className="flex flex-1 flex-col gap-6">
-            <div className="glass-panel border border-border/80 p-6 md:p-8">
-              <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.45em] text-muted-foreground">Central omnichannel</p>
-                  <h1 className="mt-3 text-3xl font-semibold text-foreground">JOSIAS Command Center</h1>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Coordene IA, canais e operacoes com uma camada visual minimalista.
-                  </p>
+          <div className="flex flex-1 flex-col">
+            <div className="sticky top-0 z-10 border-b border-border bg-white/95 px-4 py-4 backdrop-blur md:px-6">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
+                    <Sparkles className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <h1 className="text-lg font-semibold text-foreground sm:text-xl">JOSIAS AI</h1>
+                    <p className="text-xs text-muted-foreground">Command Center</p>
+                  </div>
                 </div>
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="flex flex-wrap items-center gap-2">
                   <Button
                     variant="outline"
-                    className="gap-2 rounded-full"
+                    size="sm"
+                    className="gap-2"
                     onClick={loadConversations}
                   >
                     <RefreshCcw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
-                    Sincronizar
+                    Atualizar
                   </Button>
-                  <Button className="gap-2 rounded-full px-5" onClick={handleNewConversation}>
+                  <Button size="sm" className="gap-2" onClick={handleNewConversation}>
                     <Sparkles className="h-4 w-4" />
-                    Nova conversa
+                    Nova Conversa
                   </Button>
                 </div>
               </div>
 
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-4 flex flex-wrap gap-2">
                 {QUICK_TABS.map((tab) => (
                   <button
                     key={tab.id}
-                    className={`group flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all ${
+                    className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
                       activeTab === tab.id
-                        ? 'border-transparent bg-[rgb(16,111,99)/0.12] text-foreground shadow-sm'
-                        : 'border-border/70 text-muted-foreground hover:border-border hover:text-foreground'
+                        ? 'bg-primary text-white'
+                        : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
                     }`}
                     onClick={() => setActiveTab(tab.id)}
                   >
                     <span>{tab.label}</span>
-                    <span className="rounded-full border border-current px-2 py-0.5 text-[10px] uppercase tracking-[0.4em] text-current/70">
-                      {tab.hotkey}
-                    </span>
+                    {activeTab === tab.id && (
+                      <span className="text-xs opacity-70">{tab.hotkey}</span>
+                    )}
                   </button>
                 ))}
               </div>
 
-              <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+              <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {summaryHighlights.map((item) => (
                   <div
                     key={item.label}
-                    className="rounded-2xl border border-border/70 px-4 py-5 text-sm text-muted-foreground"
+                    className="rounded-lg border border-border bg-white p-3"
                   >
-                    <p className="text-xs uppercase tracking-[0.35em]">{item.label}</p>
-                    <p className="mt-2 text-2xl font-semibold text-foreground">{item.value}</p>
+                    <p className="text-xs font-medium text-muted-foreground">{item.label}</p>
+                    <p className="mt-1 text-xl font-bold text-foreground">{item.value}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="glass-panel flex-1 overflow-hidden border border-border/80 p-0">
-              <div className="h-full w-full overflow-y-auto px-4 py-6 md:px-10 md:py-10">
+            <div className="flex-1 overflow-hidden bg-gray-50">
+              <div className="h-full w-full overflow-y-auto p-4 sm:p-6 lg:p-8">
                 {renderActiveView()}
               </div>
             </div>

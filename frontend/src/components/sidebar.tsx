@@ -68,8 +68,8 @@ export function Sidebar({
   ];
 
   return (
-    <div className="glass-panel flex h-full flex-col border border-border/60 bg-transparent/40 px-4 py-6">
-      <div className="flex items-center justify-between rounded-2xl border border-border/60 px-4 py-3">
+    <div className="flex h-full flex-col rounded-xl border border-border bg-white px-4 py-6 shadow-sm">
+      <div className="flex items-center justify-between rounded-xl border border-border bg-white px-4 py-3">
         <div className="flex items-center gap-3">
           <Logo className="h-6 w-6" />
           <div>
@@ -80,14 +80,14 @@ export function Sidebar({
         <Button
           variant="ghost"
           size="icon"
-          className="h-9 w-9 rounded-full border border-border/80 text-muted-foreground hover:text-foreground"
+          className="h-9 w-9 rounded-full border border-border text-muted-foreground hover:bg-secondary hover:text-foreground"
           onClick={toggleTheme}
         >
           {theme === 'light' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
         </Button>
       </div>
 
-      <div className="mt-6 rounded-2xl border border-border/60 px-4 py-3 text-xs text-muted-foreground">
+      <div className="mt-6 rounded-xl border border-border bg-white px-4 py-3 text-xs text-muted-foreground">
         <p className="font-medium uppercase tracking-[0.35em] text-foreground/70">Snapshot</p>
         <div className="mt-3 space-y-2">
           <p className="flex items-center justify-between text-sm">
@@ -101,7 +101,7 @@ export function Sidebar({
         </div>
       </div>
 
-      <ScrollArea className="mt-6 flex-1">
+      <ScrollArea className="mt-6 flex-1 pr-2">
         <div className="space-y-1">
           {menuItems.map((item) => {
             if (item.type === 'separator') {
@@ -119,14 +119,14 @@ export function Sidebar({
               <button
                 key={item.id}
                 className={cn(
-                  'flex w-full items-center gap-3 rounded-2xl border px-3 py-2 text-sm transition-all',
+                  'flex w-full items-center gap-3 rounded-xl border px-3 py-2 text-sm transition-all',
                   isActive
-                    ? 'border-transparent bg-[rgb(16,111,99)/0.12] text-foreground shadow-[0_6px_20px_rgba(16,111,99,0.12)]'
-                    : 'border-transparent text-muted-foreground hover:border-border/80 hover:text-foreground'
+                    ? 'border-primary/20 bg-primary/10 text-foreground'
+                    : 'border-transparent text-muted-foreground hover:border-border hover:bg-secondary/60 hover:text-foreground'
                 )}
                 onClick={() => onTabChange(item.id as any)}
               >
-                <span className={cn('flex h-8 w-8 items-center justify-center rounded-xl border text-xs', isActive ? 'border-transparent bg-[rgb(16,111,99)/0.18] text-foreground' : 'border-border/60 text-muted-foreground')}>
+                <span className={cn('flex h-8 w-8 items-center justify-center rounded-lg border text-xs', isActive ? 'border-primary/20 bg-primary/10 text-primary' : 'border-border text-muted-foreground')}>
                   <Icon className="h-4 w-4" />
                 </span>
                 <span className="font-medium">{item.label}</span>
@@ -136,11 +136,11 @@ export function Sidebar({
         </div>
 
         {activeTab === 'chat' && conversations.length > 0 && (
-          <div className="mt-6 rounded-2xl border border-border/60 p-4">
+          <div className="mt-6 rounded-xl border border-border bg-white p-4">
             <div className="mb-3 flex items-center justify-between text-xs uppercase tracking-[0.4em] text-muted-foreground">
               <span>Conversas</span>
               <button
-                className="rounded-full border border-border px-2 py-1 text-[10px] font-semibold tracking-[0.3em]"
+                className="rounded-full border border-border px-2 py-1 text-[10px] font-semibold tracking-[0.3em] hover:bg-secondary"
                 onClick={onNewConversation}
               >
                 +
@@ -153,8 +153,8 @@ export function Sidebar({
                   className={cn(
                     'group flex items-center gap-3 rounded-xl border px-3 py-2 text-sm transition-all',
                     activeConversation === conv.id
-                      ? 'border-transparent bg-[rgb(16,111,99)/0.1] text-foreground'
-                      : 'border-border/60 text-muted-foreground hover:border-border hover:text-foreground'
+                      ? 'border-primary/20 bg-primary/10 text-foreground'
+                      : 'border-border text-muted-foreground hover:bg-secondary/60 hover:text-foreground'
                   )}
                 >
                   <button className="flex-1 text-left" onClick={() => onSelectConversation(conv.id)}>
@@ -164,7 +164,7 @@ export function Sidebar({
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-7 w-7 rounded-full text-muted-foreground/70 hover:text-foreground"
+                    className="h-7 w-7 rounded-full text-muted-foreground/70 hover:bg-secondary hover:text-foreground"
                     onClick={(e) => {
                       e.stopPropagation();
                       onDeleteConversation(conv.id);
@@ -179,10 +179,10 @@ export function Sidebar({
         )}
       </ScrollArea>
 
-      <div className="mt-6 rounded-2xl border border-border/60 px-4 py-3">
+      <div className="mt-6 rounded-xl border border-border bg-white px-4 py-3">
         <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">Operador</p>
         <div className="mt-3 flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[rgb(16,111,99)/0.18] text-sm font-semibold text-foreground">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
             SL
           </div>
           <div className="min-w-0">

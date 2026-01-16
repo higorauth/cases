@@ -23,33 +23,35 @@ export function Dashboard() {
   ];
 
   return (
-    <div className="space-y-8">
-      <div className="rounded-3xl border border-border/60 bg-gradient-to-br from-[rgba(16,111,99,0.12)] to-transparent px-8 py-10">
-        <p className="text-xs uppercase tracking-[0.5em] text-muted-foreground">Overview</p>
-        <div className="mt-4 flex flex-wrap items-end gap-6">
+    <div className="space-y-6">
+      <div className="rounded-xl border border-border bg-white p-8">
+        <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-4xl font-semibold text-foreground">Bem-vindo ao painel Josias</h1>
-            <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-              Uma visao enxuta de conversas inteligentes, canais conectados e pulsacao de atendimento.
+            <h2 className="text-2xl font-bold text-foreground">Dashboard</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Visão geral das suas conversas e métricas
             </p>
           </div>
-          <Button className="rounded-full">
-            Atualizar insights
-            <TrendingUp className="ml-2 h-4 w-4" />
+          <Button variant="outline" className="gap-2">
+            <TrendingUp className="h-4 w-4" />
+            Relatório
           </Button>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {stats.map((item) => (
-            <div key={item.label} className="rounded-2xl border border-border/60 bg-card/60 px-5 py-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">{item.label}</p>
-                  <p className="mt-3 text-3xl font-semibold text-foreground">{item.value}</p>
-                  <p className="text-xs text-[rgb(16,111,99)]">{item.delta} semana</p>
+            <div key={item.label} className="card-hover rounded-xl border border-border bg-white p-5">
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <p className="text-sm text-muted-foreground">{item.label}</p>
+                  <p className="mt-2 text-3xl font-bold text-foreground">{item.value}</p>
+                  <p className="mt-1 flex items-center gap-1 text-sm font-medium text-success">
+                    <TrendingUp className="h-3 w-3" />
+                    {item.delta}
+                  </p>
                 </div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-border/60 text-muted-foreground">
-                  <item.icon className="h-5 w-5" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                  <item.icon className="h-6 w-6 text-primary" />
                 </div>
               </div>
             </div>
@@ -58,51 +60,52 @@ export function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
-        <div className="rounded-3xl border border-border/60 p-6 xl:col-span-2">
+        <div className="rounded-xl border border-border bg-white p-6 xl:col-span-2">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">Atividade 24h</p>
-              <h2 className="mt-2 text-xl font-semibold text-foreground">Fluxo por janela de tempo</h2>
+              <h3 className="text-lg font-bold text-foreground">Atividade 24h</h3>
+              <p className="text-sm text-muted-foreground">Distribuição por período</p>
             </div>
-            <span className="rounded-full border border-border/60 px-3 py-1 text-xs uppercase tracking-[0.35em] text-muted-foreground">Realtime</span>
+            <span className="rounded-lg bg-success/10 px-3 py-1 text-xs font-semibold text-success">
+              Ao Vivo
+            </span>
           </div>
-          <div className="mt-6 grid grid-cols-4 gap-4">
-            {timeline.map((slot) => (
-              <div key={slot.label} className="rounded-2xl border border-border/60 px-4 py-5">
-                <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">{slot.label}</p>
-                <div className="mt-4 h-24 rounded-full bg-[rgb(16,111,99)/0.12]">
-                  <div className="h-full w-full rounded-full bg-[rgb(16,111,99)/0.4]" style={{ height: `${slot.value}%` }} />
+          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {timeline.map((slot, index) => (
+              <div key={slot.label} className="rounded-lg border border-border bg-gray-50 p-4">
+                <p className="text-xs font-medium text-muted-foreground">{slot.label}</p>
+                <div className="mt-4 flex h-20 items-end">
+                  <div 
+                    className="w-full rounded-t-md bg-primary/20"
+                    style={{ height: `${slot.value}%` }}
+                  />
                 </div>
-                <p className="mt-3 text-lg font-semibold text-foreground">{slot.value}</p>
+                <p className="mt-3 text-lg font-bold text-foreground">{slot.value}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="rounded-3xl border border-border/60 p-6">
-          <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">Service level</p>
-          <h2 className="mt-2 text-xl font-semibold text-foreground">Operacao em tempo real</h2>
-          <div className="mt-6 space-y-4">
+        <div className="rounded-xl border border-border bg-white p-6">
+          <h3 className="text-lg font-bold text-foreground">Performance</h3>
+          <p className="text-sm text-muted-foreground">Métricas em tempo real</p>
+          <div className="mt-6 space-y-3">
             {serviceLevels.map((item) => (
-              <div key={item.label} className="flex items-center justify-between rounded-2xl border border-border/60 px-4 py-4">
+              <div key={item.label} className="card-hover flex items-center justify-between rounded-lg border border-border bg-gray-50 p-4">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[rgb(16,111,99)/0.12]">
-                    <item.icon className="h-4 w-4 text-[rgb(16,111,99)]" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                    <item.icon className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-foreground">{item.value}</p>
-                    <p className="text-xs text-muted-foreground">{item.label}</p>
+                    <p className="text-sm text-muted-foreground">{item.label}</p>
+                    <p className="text-lg font-bold text-foreground">{item.value}</p>
                   </div>
                 </div>
-                <ArrowRight className="h-4 w-4 text-muted-foreground" />
+                <ArrowRight className="h-5 w-5 text-muted-foreground" />
               </div>
             ))}
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
       </div>
     </div>
   );

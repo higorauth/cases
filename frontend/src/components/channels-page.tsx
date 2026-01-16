@@ -33,7 +33,7 @@ export function ChannelsPage() {
 
   return (
     <div className="space-y-8">
-      <div className="glass-panel border border-border/70 px-8 py-8">
+      <div className="glass-panel border border-border px-6 py-6 sm:px-8 sm:py-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">Rotas conectadas</p>
@@ -48,13 +48,13 @@ export function ChannelsPage() {
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {channels.map((channel) => (
-          <div key={channel.name} className="rounded-3xl border border-border/70 bg-card/60 p-6">
+          <div key={channel.name} className="rounded-2xl border border-border bg-white p-6 shadow-sm">
             <div className="flex items-start justify-between">
               <div className={`rounded-2xl bg-gradient-to-br ${channel.color} p-3 text-white`}>
                 <channel.icon className="h-6 w-6" />
               </div>
               {channel.connected && (
-                <div className="flex items-center gap-1 rounded-full border border-[rgb(16,111,99)/0.4] px-3 py-1 text-[11px] uppercase tracking-[0.4em] text-[rgb(16,111,99)]">
+                <div className="flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-[11px] uppercase tracking-[0.4em] text-primary">
                   <CheckCircle2 className="h-3 w-3" />
                   {channel.status}
                 </div>

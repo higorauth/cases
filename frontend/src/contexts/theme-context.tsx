@@ -12,13 +12,13 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('dark');
+  const [theme, setTheme] = useState<Theme>('light');
 
   useEffect(() => {
-    // Carregar tema do localStorage ou usar 'dark' como padrão
-    const savedTheme = localStorage.getItem('josias-theme') as Theme;
-    const initialTheme = savedTheme || 'dark';
+    // Carregar tema do localStorage ou usar 'light' como padrão
+    const initialTheme: Theme = 'light';
     setTheme(initialTheme);
+    localStorage.setItem('josias-theme', initialTheme);
     document.documentElement.classList.toggle('dark', initialTheme === 'dark');
   }, []);
 

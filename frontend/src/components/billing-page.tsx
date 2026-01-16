@@ -53,7 +53,7 @@ export function BillingPage() {
 
   return (
     <div className="space-y-8">
-      <div className="glass-panel border border-border/70 px-8 py-8">
+      <div className="glass-panel border border-border px-6 py-6 sm:px-8 sm:py-8">
         <div className="mb-4 flex items-center gap-2 text-sm text-muted-foreground">
           <span>Inicio</span>
           <span>/</span>
@@ -69,7 +69,7 @@ export function BillingPage() {
             className={cn(
               'rounded-full border px-4 py-2 text-sm font-medium',
               billingPeriod === 'monthly'
-                ? 'border-transparent bg-[rgb(16,111,99)] text-white'
+                ? 'border-transparent bg-primary text-primary-foreground'
                 : 'border-border/70 text-muted-foreground'
             )}
           >
@@ -81,7 +81,7 @@ export function BillingPage() {
             className={cn(
               'rounded-full border px-4 py-2 text-sm font-medium',
               billingPeriod === 'annual'
-                ? 'border-transparent bg-[rgb(16,111,99)] text-white'
+                ? 'border-transparent bg-primary text-primary-foreground'
                 : 'border-border/70 text-muted-foreground'
             )}
           >
@@ -96,12 +96,12 @@ export function BillingPage() {
           <div
             key={plan.name}
             className={cn(
-              'rounded-3xl border border-border/60 bg-card/60 p-6',
-              plan.recommended && 'ring-1 ring-[rgb(16,111,99)]/50'
+              'rounded-2xl border border-border bg-white p-6 shadow-sm',
+              plan.recommended && 'ring-1 ring-primary/40'
             )}
           >
             {plan.recommended && (
-              <span className="inline-flex rounded-full border border-[rgb(16,111,99)]/40 px-3 py-1 text-[10px] uppercase tracking-[0.35em] text-[rgb(16,111,99)]">
+              <span className="inline-flex rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-[10px] uppercase tracking-[0.35em] text-primary">
                 Destaque
               </span>
             )}
@@ -123,7 +123,7 @@ export function BillingPage() {
             <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
               {plan.features.map((feature) => (
                 <li key={feature} className="flex items-start gap-2">
-                  <Check className="mt-0.5 h-4 w-4 text-[rgb(16,111,99)]" />
+                  <Check className="mt-0.5 h-4 w-4 text-primary" />
                   {feature}
                 </li>
               ))}
@@ -133,7 +133,7 @@ export function BillingPage() {
         ))}
       </div>
 
-      <div className="glass-panel border border-border/70 px-8 py-6">
+      <div className="glass-panel border border-border px-6 py-6 sm:px-8">
         <h2 className="text-xl font-semibold text-foreground">Informacoes adicionais</h2>
         <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
